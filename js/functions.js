@@ -1,22 +1,24 @@
-const checkStringLength = (str, maxLength) => str.length <= maxLength;
+// eslint-disable-next-line no-unused-vars
+function isMeetingWithinWorkingHours(startTime, endTime, meetingStart, meetingDuration) {
+  const startMinutes = convertToMinutes(startTime);
+  const endMinutes = convertToMinutes(endTime);
+  const meetingStartMinutes = convertToMinutes(meetingStart);
 
-const isPalindrome = (str) => {
-  const formattedStr = str.toLowerCase().replace(/\s/g, '');
-  const reversedStr = formattedStr.split('').reverse().join('');
-  return formattedStr === reversedStr;
-};
+  // Рассчитываем время окончания встречи
+  const meetingEndMinutes = meetingStartMinutes + meetingDuration;
 
-const extractNumber = (str) => {
-  if (typeof str === 'number') {
-    str = str.toString();
+  // Проверяем, выходит ли встреча за рамки рабочего дня
+  if (meetingStartMinutes >= startMinutes && meetingEndMinutes <= endMinutes) {
+    return true;
   }
-  const numbers = str.match(/\d+/g);
-  if (!numbers) {
-    return NaN;
+  else {
+    return false;
   }
-  return parseInt(numbers.join(''), 10);
-};
+}
 
-export { checkStringLength };
-export { isPalindrome };
-export { extractNumber };
+
+// Функция для преобразования времени в минуты
+function convertToMinutes(time) {
+  const [hours, minutes] = time.split(':');
+  return parseInt(hours, 10) * 60 + parseInt(minutes, 10);
+}
