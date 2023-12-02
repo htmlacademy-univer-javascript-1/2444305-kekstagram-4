@@ -1,5 +1,7 @@
 import { renderPhotos } from './addpreview.js';
 import { shuffleArray } from './util.js';
+import { showError } from './alerts.js';
+import './effects.js';
 
 const DEFAULT_PREVIEW_LOAD = 25;
 const RANDOM_PREVIEW_LOAD = 10;
@@ -39,4 +41,8 @@ const onSuccess = (data) => {
   filter.classList.remove('img-filters--inactive');
   photos = data.slice();
   renderPhotos(photos.slice(0, DEFAULT_PREVIEW_LOAD));
+};
+
+const onError = () => {
+  showError('Ошибка загрузки, попробуйте еще раз', 'Закрыть')
 };
