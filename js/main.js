@@ -1,6 +1,7 @@
 import { renderPhotos } from './addpreview.js';
 import { shuffleArray } from './util.js';
 import { showError } from './alerts.js';
+import './effects.js';
 
 const DEFAULT_PREVIEW_LOAD = 25;
 const RANDOM_PREVIEW_LOAD = 10;
